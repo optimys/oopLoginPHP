@@ -1,6 +1,10 @@
 <?php
 class DB{
-    private $_pdo;
+    private $_pdo,
+            $_query,
+            $_error = false,
+            $_results,
+            $_count = 0;
     private static $_instance = null;
 
     private function __construct(){
