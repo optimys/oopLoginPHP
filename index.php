@@ -1,10 +1,10 @@
 <?php
 require_once('core/init.php');
 
-$user = DB::getInstance()->get('users', array('username', '=', 'Alex473'));
+$user = DB::getInstance()->get("users", array("username","=","Alex47"));
 
 if(!$user->count()){
-    echo "Error!";
-}else{
-    echo "OK";
+    echo "No user" ;
+} else {
+    echo $user->first()->username; 
 }
