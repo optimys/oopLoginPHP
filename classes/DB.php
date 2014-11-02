@@ -63,6 +63,51 @@ class DB {
         return false;
     }
 
+    public function insert ($table, $fields=array())
+    {
+        if (count($fields)) {
+            $keys = array_keys($fields);
+            $input = implode("`, `", $keys);
+            $x = 1;
+            $values = "";
+            foreach ($fields as $field) {
+                $values .= "?";
+                if ($x < count($fields)) {
+                    $values .= ", ";
+                    $x++;
+                }
+            }
+
+            $sql = "INSERT INTO {$table} (`{$input}`) VALUES({$values}) ";
+            echo $sql;
+            if(!$this->query($sql,$fields)->error()){
+                return "Success!";
+            }
+        }
+        return false;
+    }
+
+    public function update($table, $fields=array(), $id ){
+
+        $values="";
+        $x=1;
+        foreach($fields as $key=>$value){
+            $values .= "{$key} = ?";
+            if( $x < count($fields)){
+                $values .= ", ";
+            }
+            $x++;
+        }
+
+        $sql="UPDATE {$table} SET {$values} WHERE id = {$id}";
+
+        if(!$this->query($sql, $fields)->error()){
+            echo "Success!";
+        }else{
+            return false;
+        }
+    }
+
     public function get($table, $where){
         return $this->action("SELECT *", $table, $where);
     }
