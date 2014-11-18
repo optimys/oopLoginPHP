@@ -26,7 +26,8 @@ if (Input::exists()) {                       //Был-ли запрос ?
         ));
 
         if ($validation->passed()) {
-            echo "<div class='alert alert-success' role='alert'>Passed</div>";
+            Session::flash('success','Your registration now is complete!'); //После успешной проверки устанвливаем сеесиию с именем "success" и "текстом поздравления"
+            header("Location: index.php");//Перенаправляем на главную страницу, там будет проверка на существования сессии с именем success
         } else {
             $validation->errors();
         }
