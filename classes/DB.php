@@ -84,7 +84,6 @@ class DB
             }
 
             $sql = "INSERT INTO {$table} (`{$input}`) VALUES({$values}) ";
-            echo $sql;
             if (!$this->query($sql, $fields)->error()) {
                 return "Success!";
             }
@@ -108,7 +107,6 @@ class DB
         $sql = "UPDATE {$table} SET {$values} WHERE id = {$id}";
 
         if (!$this->query($sql, $fields)->error()) {
-            echo "Success!";
         } else {
             return false;
         }
