@@ -23,7 +23,7 @@ class Hash{
      * @return string   возвращаемое значение, похоже на алфавит инопланетян
      */
     public static function salt($length){
-        return mcrypt_create_iv($length);
+        return utf8_encode(mcrypt_create_iv($length));
     }
 
     /**

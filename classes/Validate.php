@@ -24,9 +24,9 @@ class Validate
     }
 
     /**
-     * @param $source Тип отправки GET/POST
+     * @param $source Тип отправки GET/POST причем нужно его писать польностью например: $_POST, без кавычек, передавать как есть
      * @param array $items Массив условий для заполняемых полей
-     * @return $this Объект класса
+     * @return $this в итоге возвращаем Объект класса
      */
     public function check($source, $items = array())
     {
@@ -71,7 +71,7 @@ class Validate
             $this->_passed = true;
         }
 
-        return $this;
+        return $this; //ВОЗВРАЩАЕМ ОБЪЕКТ!!!
     }
 
     /**

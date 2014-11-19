@@ -40,7 +40,7 @@ class DB
             }
 
             if ($this->_query->execute()) {
-                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);      //ВОзвращаем Объект !!!!
                 $this->_count = $this->_query->rowCount();
             } else {
                 $this->_error = true;
@@ -61,7 +61,7 @@ class DB
             if (in_array($operator, $operators)) {
                 $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
                 if (!$this->query($sql, array($value))->error()) {
-                    return $this;
+                    return $this;                                               // Возвращаем Объект !
                 }
             }
         }
@@ -112,7 +112,7 @@ class DB
         }
     }
 
-    public function get($table, $where)
+    public function get($table, $where=array())
     {
         return $this->action("SELECT *", $table, $where);
     }
