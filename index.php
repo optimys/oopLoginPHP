@@ -32,7 +32,7 @@ if (Session::exists('loggedin')) {
                     echo '<a href="logout.php">Logout</a>';
                 } else {
                     echo '<p class="alert alert-warning">You are not loggeded in</p>';
-                    echo '<a href="login.php">Login</a>';
+                    echo '<a href="login.php">Login</a><br><a href="register.php">Register</a>';
                 }
                 ?>
             </div>
