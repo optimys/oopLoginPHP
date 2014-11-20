@@ -1,20 +1,23 @@
 <?php
 require_once('core/init.php');
 
-if(Input::exists()){
-    if(Token::check(Input::get('token'))){
+if (Input::exists()) {
+    if (Token::check(Input::get('token'))) {
         $validate = new Validate();                     //Создаем объект проверки
-        $validation = $validate->check($_POST,array(    //Вызываем метод проверки у этого объекта. Результат сразу пишем в переменную! $validation
+        $validation = $validate->check($_POST, array(    //Вызываем метод проверки у этого объекта. Результат сразу пишем в переменную! $validation
             'username' => array('required' => true),     // Как результат, нам вернется целый ОБЪЕКТ!
             'password' => array('required' => true)      // У этого объекта будет метод, который показывает что было
         ));                                             //записано в его свойство о результате проверки
-        if($validation->passed()){                      //Этот метод как раз и возвращает это свойство
-           $user = new User();                          //Создаемновый объект user и сразу
-           $login = $user->login(Input::get('username'), Input::get('password')); // Возвращаем в переменную результат проверки
-           if($login){
-               echo "You login successfully!";
-           }
-        }else{
+        if ($validation->passed()) {                      //Этот метод как раз и возвращает это свойство
+            $user = new User();                          //Создаемновый объект user и сразу
+            $login = $user->login(Input::get('username'), Input::get('password')); // Возвращаем в переменную результат проверки
+            if ($login) {
+                Session::flash('loggedin', 'You logged in successfully');
+                Redirect::to('index');
+            } else {
+                echo "There was a problem with login";
+            }
+        } else {
             $validation->errors();                      //Выводим список ошибок, и снова благодяря методу
         }
     }
@@ -30,13 +33,12 @@ if(Input::exists()){
 </head>
 <body>
 <div class="jumbotron">
-    <h3>Login Page</h3>
-    <a href="register.php">Go to register page</a>
-    <p></p>
-    <a href="index.php">Go to home page</a>
-<div class="container">
-    <div class="row">
+    <div class="container">
+        <h3>Login Page</h3>
+        <a href="register.php">register</a><br>
+        <a href="index.php">home</a>
 
+        <div class="row">
             <form action="" method="post" class="form-horizontal col-md-5 col-lg-offset-3">
                 <div class="form-group">
                     <lable class="col-md-4" for="username">Your login</lable>
@@ -46,7 +48,8 @@ if(Input::exists()){
                 <div class="form-group">
                     <lable class="col-md-4" for="password">Your password</lable>
                     <div class="col-md-8">
-                        <input class="form-control" name="password" id="password" type="password" autocomplete="off"/></div>
+                        <input class="form-control" name="password" id="password" type="password" autocomplete="off"/>
+                    </div>
                 </div>
                 <input class="token" name="token" type="text" hidden="hidden" value="<?= Token::generate() ?>"/>
                 <button class="btn btn-success pull-right" type="submit">Login</button>

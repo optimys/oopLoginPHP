@@ -8,14 +8,29 @@ class User{
     private  $db;       //Индификатор подключения к БД
     private  $_data;    //Здесь мы храним массив с данными о пользователе
     private $_sessionName;  //Храним имя сессии
+    private $_isLoggedIN;
 
     /**
      * Конструктор, обращается к классу DB (синглтон), получает ссылку на обект ДБ
      * переменной $db присваевается эта ссылка
+     * Здесь же записываем в переменную имя сессии, что не писать постоянно Config::get('ses******')
      */
-    public  function __construct(){
+    public  function __construct($user = null){
         $this->db = DB::getInstance();
         $this->_sessionName = Config::get('session/session_name');
+
+        if(!$user){
+            if(Session::exists($this->_sessionName)){
+                $user = Session::get($this->_sessionName);
+                if($this->find($user)){
+                    $this->_isLoggedIN = true;
+                }else{
+                    //Logout
+                }
+            }
+        }else{
+            $this->find($user);
+        }
     }
 
     /**
@@ -45,11 +60,17 @@ class User{
         return false;
     }
 
-    public function login($username=null, $password=null){
+    /**
+     * @param null $username Имя пользователя которое ввели в фоме логинизации
+     * @param null $password Пароль пользователя которое ввели в фоме логинизации
+     * @return bool Возвращаем тру так как в login.php у нас есть проверка что возвращает метод тру или Фалсе
+     */
+    public function login($username=null, $password=null){          //По умолчанию все равно NULL
         $user = $this->find($username);                             //Проверяем есть ли такое имя?
         if($user){
             if($this->data()->password=== Hash::make($password, $this->data()->salt)){
                 Session::put($this->_sessionName, $this->_data->id);            //Записываем в Сессию "user" значение id
+                return true;
             }                                                                   //вернувшегося объекта
         }
         return false;
@@ -59,7 +80,11 @@ class User{
      * Возвращает свойство в котором содержиться *ССЫЛКА* на объект с данными пользователя
      * @return _data    *ССЫЛКА* на объект с данными пользователя
      */
-    private function data(){
+    public  function data(){
         return $this->_data;
+    }
+
+    public function isLoggedIn(){
+        return $this->_isLoggedIN;
     }
 }

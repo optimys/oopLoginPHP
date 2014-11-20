@@ -30,17 +30,17 @@ if (Input::exists()) {                       //Был-ли запрос ?
             $salt = Hash::salt(32);
             try {
                 $user->create(array(
-                    'username'  => Input::get('username'),
-                    'password'  => Hash::make(Input::get('password'), $salt),
-                    'salt'      => $salt,
-                    'name'      => Input::get('name'),
-                    'joined'    => date('Y.m.d H:i:s'),
-                    'group'     => 1
+                    'username' => Input::get('username'),
+                    'password' => Hash::make(Input::get('password'), $salt),
+                    'salt' => $salt,
+                    'name' => Input::get('name'),
+                    'joined' => date('Y.m.d H:i:s'),
+                    'group' => 1
                 ));
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 die($e->getMessage());
             }
-            Session::flash('success','Your registration now is complete!'); //После успешной проверки устанвливаем сеесиию с именем "success" и "текстом поздравления"
+            Session::flash('success', 'Your registration now is complete!'); //После успешной проверки устанвливаем сеесиию с именем "success" и "текстом поздравления"
             Redirect::to('index');//Перенаправляем на главную страницу, там будет проверка на существования сессии с именем success
         } else {
             $validation->errors();
@@ -60,38 +60,42 @@ if (Input::exists()) {                       //Был-ли запрос ?
 <div class="jumbotron">
     <div class="container">
         <h3>Register new user</h3>
+        <a href="login.php">login</a><br>
+        <a href="index.php">home</a>
 
-        <form action="" method="post" class=" form-horizontal col-md-5 col-md-offset-3">
-            <div class="form-group">
-                <lable class="col-md-4" for="username">Your Login name</lable>
-                <div class="col-md-8">
-                    <input class="form-control" type="text" name="username" id="username" autocomplete="off"
-                           value="<?= escape(Input::get('username')); ?>"/>
+        <div class="row">
+            <form action="" method="post" class=" form-horizontal col-md-5 col-md-offset-3">
+                <div class="form-group">
+                    <lable class="col-md-4" for="username">Your Login name</lable>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" name="username" id="username" autocomplete="off"
+                               value="<?= escape(Input::get('username')); ?>"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <lable class="col-md-4" for="password">Password</lable>
-                <div class="col-md-8">
-                    <input class="form-control" type="password" name="password" id="password"/>
+                <div class="form-group">
+                    <lable class="col-md-4" for="password">Password</lable>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" name="password" id="password"/>
+                    </div>
+                    <br>
                 </div>
-                <br>
-            </div>
-            <div class="form-group">
-                <lable class="col-md-4" for="password_again">Password again</lable>
-                <div class="col-md-8">
-                    <input class="form-control" type="password" name="password_again" id="password_again"/>
+                <div class="form-group">
+                    <lable class="col-md-4" for="password_again">Password again</lable>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" name="password_again" id="password_again"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <lable class="col-md-4" for="name">Your full name</lable>
-                <div class="col-md-8">
-                    <input class="form-control" type="text" name="name" id="name" autocomplete="off"
-                           value="<?= escape(Input::get('name')); ?>"/>
+                <div class="form-group">
+                    <lable class="col-md-4" for="name">Your full name</lable>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" name="name" id="name" autocomplete="off"
+                               value="<?= escape(Input::get('name')); ?>"/>
+                    </div>
                 </div>
-            </div>
-            <input type="hidden" name="token" value="<?=Token::generate();?>">
-            <button class="btn btn-success pull-right" type="submit">Submit</button>
-        </form>
+                <input type="hidden" name="token" value="<?= Token::generate(); ?>">
+                <button class="btn btn-success pull-right" type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </div>
 </body>
