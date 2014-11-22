@@ -4,10 +4,9 @@ require_once('core/init.php');
 if (Session::exists('success')) {     //Проверяем есть ли сессия с именем success(которую мы должны били установить если
     echo Session::flash('success'); //регистрация прошла успешно)
 }
-if (Session::exists('loggedin')) {
-    echo Session::flash('loggedin');
+if (Session::exists('loggedin')) {     //Проверяем есть ли сессия с именем success(которую мы должны били установить если
+    echo Session::flash('loggedin'); //регистрация прошла успешно)
 }
-
 ?>
 <!doctype html>
 <html lang="en">

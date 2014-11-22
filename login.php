@@ -9,8 +9,9 @@ if (Input::exists()) {
             'password' => array('required' => true)      // У этого объекта будет метод, который показывает что было
         ));                                             //записано в его свойство о результате проверки
         if ($validation->passed()) {                      //Этот метод как раз и возвращает это свойство
+            $remember = (Input::get('remember') === 'on') ? true : false;   //Получаем значение запомнить
             $user = new User();                          //Создаемновый объект user и сразу
-            $login = $user->login(Input::get('username'), Input::get('password')); // Возвращаем в переменную результат проверки
+            $login = $user->login(Input::get('username'), Input::get('password'), $remember); // Возвращаем в переменную результат проверки
             if ($login) {
                 Session::flash('loggedin', 'You logged in successfully');
                 Redirect::to('index');
@@ -41,15 +42,22 @@ if (Input::exists()) {
         <div class="row">
             <form action="" method="post" class="form-horizontal col-md-5 col-lg-offset-3">
                 <div class="form-group">
-                    <lable class="col-md-4" for="username">Your login</lable>
+                    <label class="col-md-4" for="username">Your login</label>
+
                     <div class="col-md-8">
                         <input class="form-control" name="username" id="username" type="text"/></div>
                 </div>
                 <div class="form-group">
-                    <lable class="col-md-4" for="password">Your password</lable>
+                    <label class="col-md-4" for="password">Your password</label>
+
                     <div class="col-md-8">
                         <input class="form-control" name="password" id="password" type="password" autocomplete="off"/>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4" for="remember">Remember me</label>
+
+                    <div class="col-md-8"><input type="checkbox" name="remember" id="remember"/></div>
                 </div>
                 <input class="token" name="token" type="text" hidden="hidden" value="<?= Token::generate() ?>"/>
                 <button class="btn btn-success pull-right" type="submit">Login</button>

@@ -66,27 +66,27 @@ if (Input::exists()) {                       //Был-ли запрос ?
         <div class="row">
             <form action="" method="post" class=" form-horizontal col-md-5 col-md-offset-3">
                 <div class="form-group">
-                    <lable class="col-md-4" for="username">Your Login name</lable>
+                    <label class="col-md-4" for="username">Your Login name</label>
                     <div class="col-md-8">
                         <input class="form-control" type="text" name="username" id="username" autocomplete="off"
                                value="<?= escape(Input::get('username')); ?>"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <lable class="col-md-4" for="password">Password</lable>
+                    <label class="col-md-4" for="password">Password</label>
                     <div class="col-md-8">
                         <input class="form-control" type="password" name="password" id="password"/>
                     </div>
                     <br>
                 </div>
                 <div class="form-group">
-                    <lable class="col-md-4" for="password_again">Password again</lable>
+                    <label class="col-md-4" for="password_again">Password again</label>
                     <div class="col-md-8">
                         <input class="form-control" type="password" name="password_again" id="password_again"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <lable class="col-md-4" for="name">Your full name</lable>
+                    <label class="col-md-4" for="name">Your full name</label>
                     <div class="col-md-8">
                         <input class="form-control" type="text" name="name" id="name" autocomplete="off"
                                value="<?= escape(Input::get('name')); ?>"/>

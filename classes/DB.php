@@ -102,7 +102,6 @@ class DB
 
     public function update($table, $fields = array(), $id)
     {
-
         $values = "";
         $x = 1;
         foreach ($fields as $key => $value) {
@@ -121,14 +120,14 @@ class DB
         }
     }
 
-    public function get($table, $where=array())
+    public function get($table, $where = array())
     {
         return $this->action("SELECT *", $table, $where);
     }
 
-    public function delete($table, $where)
+    public function delete($table, $where = array())
     {
-        return $this->action("DELETE", $table, $where);
+        return $this->action('DELETE', $table, $where);
     }
 
     public function count()
