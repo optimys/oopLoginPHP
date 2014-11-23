@@ -41,10 +41,6 @@ if (Input::exists()) {
             <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="index.php">home</a></li>
-                    <li class="list-group-item"><a href="update.php">change name</a></li>
-                    <li class="list-group-item"><a href="changepassword.php">change password</a></li>
-                    <li class="list-group-item"><a href="profile.php">my profile</a></li>
-                    <li class="list-group-item"><a href="login.php">login</a></li>
                     <li class="list-group-item"><a href="register.php">register</a></li>
                 </ul>
             </div>
