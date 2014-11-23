@@ -35,12 +35,19 @@ if (Input::exists()) {
 <body>
 <div class="jumbotron">
     <div class="container">
-        <h3>Login Page</h3>
-        <a href="register.php">register</a><br>
-        <a href="index.php">home</a>
-
-        <div class="row">
-            <form action="" method="post" class="form-horizontal col-md-5 col-lg-offset-3">
+        <div class="row ">
+            <h3>Update page</h3>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="index.php">home</a></li>
+                    <li class="list-group-item"><a href="update.php">change name</a></li>
+                    <li class="list-group-item"><a href="changepassword.php">change password</a></li>
+                    <li class="list-group-item"><a href="profile.php">my profile</a></li>
+                    <li class="list-group-item"><a href="login.php">login</a></li>
+                    <li class="list-group-item"><a href="register.php">register</a></li>
+                </ul>
+            </div>
+            <form class="form-horizontal col-md-6" action="" method="post">
                 <div class="form-group">
                     <label class="col-md-4" for="username">Your login</label>
 

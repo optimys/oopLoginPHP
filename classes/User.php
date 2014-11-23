@@ -127,4 +127,14 @@ class User
     {
         return ( !empty($this->_data) ) ? true : false;
     }
+
+    public function update($fields = array(), $id = null){
+        if(!$id && $this->_isLoggedIN){
+            $id = $this->data()->id;
+        }
+
+        if(!$this->db->update('users', $fields, $id)){
+            throw new Exception('There was a problem with updating.');
+        };
+    }
 }

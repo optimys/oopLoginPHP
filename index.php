@@ -18,12 +18,19 @@ if (Session::exists('loggedin')) {     //Проверяем есть ли сес
 <body>
 <div class="jumbotron">
     <div class="container">
-        <h3>Home Page</h3>
-        <a href="register.php">register</a><br>
-        <a href="login.php">login</a>
-
-        <div class="row">
-            <div class="col-md-5 col-md-offset-3">
+        <div class="row ">
+            <h3>Home</h3>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="index.php">home</a></li>
+                    <li class="list-group-item"><a href="update.php">change name</a></li>
+                    <li class="list-group-item"><a href="changepassword.php">change password</a></li>
+                    <li class="list-group-item"><a href="profile.php">my profile</a></li>
+                    <li class="list-group-item"><a href="login.php">login</a></li>
+                    <li class="list-group-item"><a href="register.php">register</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
                 <?php
                 $user = new User();
                 if ($user->isLoggedIn()) {

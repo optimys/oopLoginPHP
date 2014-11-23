@@ -113,8 +113,8 @@ class DB
         }
 
         $sql = "UPDATE {$table} SET {$values} WHERE id = {$id}";
-
         if (!$this->query($sql, $fields)->error()) {
+            return true;
         } else {
             return false;
         }
