@@ -35,6 +35,9 @@ if (Session::exists('loggedin')) {     //Проверяем есть ли сес
                 $user = new User();
                 if ($user->isLoggedIn()) {
                     echo '<p class="alert alert-warning">Hello '.$user->data()->username.'</p>';
+                    if($user->hasPermission('admin')){
+                        echo '<p class="alert alert-info">And you are an admin !</p>';
+                    }
                     echo '<a href="logout.php">Logout</a>';
                 } else {
                     echo '<p class="alert alert-warning">You are not loggeded in</p>';
