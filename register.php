@@ -55,7 +55,7 @@ if (Input::exists()) {                       //Был-ли запрос ?
     <title>Register</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #eeeeee;">
 
 <div class="jumbotron">
     <div class="container">

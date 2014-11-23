@@ -21,7 +21,7 @@ if(Input::get('user')){
     <title>User page</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #eeeeee;">
 <div class="jumbotron">
     <div class="container">
         <div class="row">
@@ -33,9 +33,9 @@ if(Input::get('user')){
                     <li class="list-group-item"><a href="changepassword.php">change password</a></li>
                 </ul>
                 </div>
-            <div class="media col-md-9">
+            <div class="col-md-9">
                 <a class="media-left" href="#">
-                    <img src="" alt="User photo">
+                    <img src="no-person.jpg" class="img-rounded" alt="User photo">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">User info</h4>

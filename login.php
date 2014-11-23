@@ -33,7 +33,7 @@ if (Input::exists()) {
     <title>Document</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #eeeeee;">
 <div class="jumbotron">
     <div class="container">
         <div class="row ">
