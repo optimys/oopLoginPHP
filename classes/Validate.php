@@ -78,7 +78,7 @@ class Validate
      * Функция для заполнения переменной $_errors ошибками
      * @param $error текст  ошибки который будет отправлен в массив ошибок
      */
-    private function addError($error)
+    public  function addError($error)
     {
         $this->_errors[] = $error;
     }

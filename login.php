@@ -16,7 +16,8 @@ if (Input::exists()) {
                 Session::flash('loggedin', 'You logged in successfully');
                 Redirect::to('index');
             } else {
-                echo "There was a problem with login";
+                $validation->addError("You enter incorrect password or login doesn't exists");
+                $validation->errors();
             }
         } else {
             $validation->errors();                      //Выводим список ошибок, и снова благодяря методу

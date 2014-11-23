@@ -29,7 +29,7 @@ class User
                 if ($this->find($user)) {
                     $this->_isLoggedIN = true;
                 } else {
-                    //Logout
+                    Redirect::to('includes/errors/404');
                 }
             }
         } else {
